@@ -1,12 +1,18 @@
-jobs:
-  - job: myJob
-    timeoutInMinutes: 10
-    pool:
-      vmImage: 'ubuntu-64'
-    steps:
-      - bash: echo 'Hello World'
-  
-  - job: yourjob
-    cancelTimeoutInMinutes: 10
-    steps:
-      - bash: echo 'Hello your world'
+stages:
+  - stage: A
+    jobs:
+      - job: myJob
+        timeoutInMinutes: 10
+        pool:
+          vmImage: 'ubuntu-64'
+        steps:
+          - bash: echo 'Hello World'
+      
+      - job: yourjob
+        cancelTimeoutInMinutes: 10
+        steps:
+          - bash: echo 'Hello your world'
+  - stage: B
+    jobs:
+      - job: newJob
+      - job: oldJob
