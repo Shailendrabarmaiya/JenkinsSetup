@@ -1,24 +1,16 @@
 jobs:
-  - job: MynewJob
-    displayName: LearnYMLJob
-    dependsOn: 'NA'
-    condition: 'No Condition as of now'
-    strategy:
-      parallel: # parallel strategy
-      matrix: noMatrix
-      maxParallel: 2
-    continueOnError: true
-    pool:
-    workspace:
-      clean: outputs
-    container:
-    timeoutInMinutes: 120
-    cancelTimeoutInMinutes: 12
-    variables:
+  - job: A
     steps:
-      - 
-    services:
-      
-      
-      
-
+      - script: exit 1
+  - job: B
+    dependsOn: A
+    condition: failed()
+    steps:
+      - script: this job will run when job a fails
+  - job: C
+    dependsOn: 
+    - A
+    - B
+    condition: succeded('B')
+    steps:
+      - script: This job will run when B is run successfully.
