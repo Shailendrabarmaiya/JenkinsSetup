@@ -1,16 +1,9 @@
-jobs:
-  - job: A
-    steps:
-      - script: exit 1
-  - job: B
-    dependsOn: A
-    condition: failed()
-    steps:
-      - script: this job will run when job a fails
-  - job: C
-    dependsOn: 
-    - A
-    - B
-    condition: succeded('B')
-    steps:
-      - script: This job will run when B is run successfully.
+steps:
+  - checkout: self
+    clean: true
+    lfs: true
+    fetchDepth: 5
+    path: "A"
+    persistCredentials: true
+    submodules: true | recursive
+    
