@@ -1,9 +1,7 @@
-steps:
-  - checkout: self
-    clean: true
-    lfs: true
-    fetchDepth: 5
-    path: "A"
-    persistCredentials: true
-    submodules: true | recursive
-    
+jobs:
+  - job: A
+    steps:
+      - task: AzureRmWebAppDeployment@3
+        inputs:
+          WebAppName: NewApp
+          azureSubscription: 'ConnectARM'
