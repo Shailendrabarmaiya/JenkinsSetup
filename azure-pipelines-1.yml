@@ -1,0 +1,7 @@
+jobs:
+  - job: A
+    steps:
+      - task: AzureRmWebAppDeployment@3
+        inputs:
+          WebAppName: NewApp
+          azureSubscription: 'ConnectARM'
